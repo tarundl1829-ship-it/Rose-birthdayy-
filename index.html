@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Rose (Dhana) ❤️</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Great+Vibes&family=Poppins:wght@300;400;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        body { font-family: 'Poppins', sans-serif; background: #0d0418; color: #ffffff; overflow-x: hidden; }
+        .font-romantic { font-family: 'Great Vibes', cursive; }
+        .font-handwriting { font-family: 'Dancing Script', cursive; }
+        .font-casual { font-family: 'Caveat', cursive; }
+        .floating-heart { position: fixed; color: rgba(244, 114, 182, 0.6); pointer-events: none; z-index: 1; animation: floatUp 8s linear infinite; }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) scale(0.5) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
+        }
+        .glass-card { background: rgba(255,255,255,0.06); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 8px 32px 0 rgba(236,72,153,0.25); }
+        .glow-text { text-shadow: 0 0 12px rgba(244,114,182,0.9), 0 0 24px rgba(236,72,153,0.7); }
+        .flame { width: 14px; height: 22px; background: linear-gradient(to top,#ff9d00,#ff0000,#ffff00); border-radius: 50% 50% 20% 20%; position: absolute; top: -22px; left: 50%; transform: translateX(-50%); animation: flicker 0.2s infinite alternate; box-shadow: 0 0 12px #ff9d00,0 0 24px #ff0000; }
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1) rotate(-2deg); }
+            100% { transform: translateX(-50%) scale(1.15) rotate(2deg); }
+        }
+        .flame.extinguished { display: none; }
+        .pop-out-photo { animation: popOut 1.2s cubic-bezier(0.175,0.885,0.32,1.275) forwards; }
+        @keyframes popOut {
+            0% { opacity: 0; transform: scale(0.2) translateY(80px) rotate(-10deg); }
+            100% { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); }
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0d0418; }
+        ::-webkit-scrollbar-thumb { background: #ec4899; border-radius: 4px; }
+    </style>
+</head>
+<body class="min-h-screen relative selection:bg-pink-500 selection:text-white">
+    <div id="hearts-container"></div>
+
+    <!-- PASSCODE LOCK SCREEN -->
+    <div id="passcode-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#0d0418] transition-opacity duration-700">
+        <div class="glass-card max-w-md w-full rounded-3xl p-8 text-center relative overflow-hidden border border-pink-500/40">
+            <div class="w-20 h-20 mx-auto mb-4 rounded-full bg-pink-500/20 flex items-center justify-center text-pink-400 text-3xl animate-bounce">
+                <i class="fa-solid fa-heart-lock"></i>
+            </div>
+            <h2 class="text-3xl font-bold font-handwriting text-pink-300 mb-2">Secret Lock Screen</h2>
+            <p class="text-gray-300 text-sm mb-6">Enter the secret passcode to open Rose's Birthday Surprise ❤️</p>
+            <div class="space-y-4">
+                <input type="password" id="passcode-input" placeholder="Enter Password..."
+                       class="w-full px-5 py-3 rounded-full bg-black/50 text-white text-center text-xl tracking-widest border border-pink-500/50 focus:outline-none focus:border-pink-400 focus:ring-2 focus:ring-pink-500/40 transition">
+                <button onclick="checkPasscode()"
+                        class="w-full py-3 bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold rounded-full shadow-lg shadow-pink-500/30 transition transform hover:scale-105 active:scale-95">
+                    Unlock Surprise ✨
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN APP CONTENT -->
+    <div id="main-content" class="hidden min-h-screen pb-16 relative z-10">
+        <header class="min-h-screen flex flex-col justify-center items-center text-center px-4 relative pt-12">
+            <div class="inline-block p-1 rounded-full bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 mb-6 animate-pulse">
+                <span class="bg-[#0d0418] px-6 py-2 rounded-full text-pink-300 font-semibold text-xs md:text-sm tracking-wider uppercase">
+                    Happy Birthday Rose (Dhana) 💗
+                </span>
+            </div>
+            <div class="relative mb-8 max-w-sm w-full mx-auto p-2 rounded-3xl bg-gradient-to-tr from-pink-500 via-rose-400 to-purple-600 shadow-2xl shadow-pink-500/40 transform hover:scale-105 transition duration-500">
+                <div class="overflow-hidden rounded-2xl border-2 border-white/20 bg-black/40">
+                    <img src="image_11.png" alt="Tharun & Rose" class="w-full h-auto object-cover rounded-2xl shadow-inner">
+                </div>
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-pink-600 text-white font-handwriting px-6 py-1 rounded-full text-lg shadow-lg border border-pink-300">Us Forever ❤️</div>
+            </div>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-romantic text-pink-400 glow-text mb-2">Happy Birthday Rose!</h1>
+            <p class="text-2xl md:text-3xl font-handwriting text-rose-200 mb-6">(Dhana ❤️)</p>
+            <div class="max-w-2xl glass-card rounded-2xl p-6 mb-8 border-2 border-pink-500/40 shadow-pink-500/20 shadow-xl">
+                <p class="text-xl md:text-2xl font-bold font-handwriting text-pink-300 leading-relaxed whitespace-pre-line">
+                    Happy Birthday papaaa 🫠💗
+                    “En life eh nee thaan di nee illana sethuruven 😩”
+                </p>
+            </div>
+        </header>
+
+        <section id="cake-section" class="py-16 px-4 max-w-4xl mx-auto text-center">
+            <div class="glass-card rounded-3xl p-8 md:p-12 relative overflow-hidden border border-pink-500/30">
+                <h2 class="text-3xl md:text-5xl font-romantic text-pink-300 mb-2">Virtual Cake Cutting 🎂</h2>
+                <p class="text-gray-300 mb-8 text-sm md:text-base">Blow the candle or cut the cake to reveal a special memory!</p>
+                <div class="relative w-64 h-60 mx-auto my-6 flex flex-col items-center justify-end">
+                    <div class="absolute top-8 left-1/2 -translate-x-1/2 w-4 h-16 bg-gradient-to-b from-yellow-200 to-pink-400 rounded-t-sm z-20 shadow-md">
+                        <div id="flame" class="flame"></div>
+                    </div>
+                    <div class="w-40 h-16 bg-gradient-to-r from-pink-300 via-rose-300 to-pink-400 rounded-t-2xl shadow-inner border-b-4 border-pink-400 relative z-10 flex items-center justify-center">
+                        <span class="text-pink-700 font-bold font-handwriting text-xl">Rose 💗</span>
+                    </div>
+                    <div class="w-56 h-20 bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 rounded-t-xl shadow-2xl relative flex items-center justify-center">
+                        <div class="w-full h-3 bg-white/20 absolute top-4"></div>
+                        <span class="text-white/80 text-xs tracking-widest font-semibold uppercase">Happy Birthday Dhana</span>
+                    </div>
+                    <div class="w-64 h-6 bg-slate-200 rounded-full shadow-2xl border-t-2 border-slate-300"></div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-4 mt-6 mb-8">
+                    <button onclick="cutCake()" class="px-8 py-3 bg-gradient-to-r from-pink-500 via-rose-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-semibold text-lg rounded-full shadow-lg shadow-pink-500/30 transition transform hover:scale-105 flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Cut Birthday Cake 🎉
+                    </button>
+                </div>
+                <div id="revealed-photo-container" class="hidden mt-8 max-w-sm mx-auto p-3 rounded-3xl bg-gradient-to-br from-pink-500 via-purple-500 to-rose-600 shadow-2xl shadow-pink-500/50 border-2 border-white/30 pop-out-photo">
+                    <div class="rounded-2xl overflow-hidden bg-black/50 border border-white/20">
+                        <img src="image_12.png" alt="Rose & Tharun Photo 2" class="w-full h-auto object-cover rounded-2xl">
+                    </div>
+                    <p class="font-handwriting text-2xl text-pink-200 mt-4 mb-2">My Happiness Is You! ❤️</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="letter-section" class="py-16 px-4 max-w-3xl mx-auto">
+            <div class="glass-card rounded-3xl p-8 md:p-12 relative border border-pink-500/30">
+                <div class="text-center mb-6">
+                    <i class="fa-solid fa-envelope-open-text text-5xl text-pink-400 mb-2"></i>
+                    <h2 class="text-3xl md:text-4xl font-bold font-handwriting text-pink-300">A Message From My Heart 💌</h2>
+                </div>
+                <div class="space-y-4 text-gray-100 text-base md:text-lg leading-relaxed font-casual tracking-wide bg-black/30 p-6 md:p-8 rounded-2xl border border-pink-500/20 shadow-inner">
+                    <p class="font-bold text-pink-300 text-xl">Hi Rose uh, 💗</p>
+                    <p>Wishing you a very happy birthday Papa</p>
+                    <p>I love youu so much and miss youu lots 🥺💗</p>
+                    <p>Loveee youu so much papaaaaaa 😖 enaku enna soldrathunu theriyala oru madhiri blank ahh irukkuu..</p>
+                    <p>Onnu mattum nallaa therinjikoo enakkuuu unnaaa vida edhuvume perusuu illaaa di, enaku nee venummm ennalaa sathiyamaa mudiyalaaaaa, nee feel pannuvanu solli ennala edhuvum veliya sollavum mudiyalaa, unnaaa pakamaa ennalaaa irukkave mudiyalaa papaaa ennalaa edhuvume panna mudiyalaa di sorryyyyy 😖😭 enaku theriyumm innu konjaa naal thaan aana manasu kekka matingu..</p>
+                    <p>Naan eppovum unakagaa unkooda thaan irupen..enaku edhuvume venda nee podhum 😩💗</p>
+                    <p class="font-bold text-pink-400 text-xl mt-4">Miss youu 😭</p>
+                </div>
+                <div class="mt-8 text-center">
+                    <p class="font-romantic text-4xl text-pink-400">Forever Yours,</p>
+                    <p class="text-sm text-gray-300 mt-1 font-semibold">Tharun ❤️ Dhana</p>
+                </div>
+            </div>
+        </section>
+        <footer class="text-center text-gray-400 text-xs py-8">
+            Created with unlimited love for Rose (Dhana) ❤️ | Passcode Protected
+        </footer>
+    </div>
+
+    <script>
+        function checkPasscode() {
+            const input = document.getElementById('passcode-input').value.trim();
+            const passcodeScreen = document.getElementById('passcode-screen');
+            const mainContent = document.getElementById('main-content');
+            if (input === 'Rose2823') {
+                passcodeScreen.classList.add('opacity-0');
+                setTimeout(() => {
+                    passcodeScreen.classList.add('hidden');
+                    mainContent.classList.remove('hidden');
+                    triggerConfetti();
+                }, 700);
+            } else {
+                const box = passcodeScreen.firstElementChild;
+                box.classList.add('animate-bounce');
+                setTimeout(() => box.classList.remove('animate-bounce'), 1000);
+            }
+        }
+        document.getElementById('passcode-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') checkPasscode();
+        });
+        function createHearts() {
+            const container = document.getElementById('hearts-container');
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('i');
+                heart.className = 'fa-solid fa-heart floating-heart';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                heart.style.fontSize = (Math.random() * 18 + 12) + 'px';
+                heart.style.animationDelay = (Math.random() * 5) + 's';
+                container.appendChild(heart);
+            }
+        }
+        function cutCake() {
+            const flame = document.getElementById('flame');
+            if (flame) flame.classList.add('extinguished');
+            const revealedContainer = document.getElementById('revealed-photo-container');
+            revealedContainer.classList.remove('hidden');
+            triggerConfetti();
+            revealedContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+        function triggerConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 }, colors: ['#ec4899', '#f43f5e', '#a855f7', '#fbbf24'] });
+            }
+        }
+        window.onload = function() { createHearts(); };
+    </script>
+</body>
+</html>
